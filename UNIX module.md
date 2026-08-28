@@ -30,7 +30,7 @@
 1. To get SARS-CoV2 genome as a FASTA file, we will use a command called `curl`.
 2. Copy this into your terminal `curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=NC_045512.2&rettype=fasta&retmode=text" -o NC_045512.2.fasta`
 3. In the above command option `-o` tells what the output of `curl` should be.
-4. This will download SARS-CoV2 genome sequence FASTA file into the directory you were in where you ran the code on line 23. To make sure you are in the correct directory, you can do `pwd` before proceeding with line 23.
+4. This will download SARS-CoV2 genome sequence FASTA file into the directory you were in where you ran the code in step 2 in this section. To make sure you are in the correct directory, you can do `pwd` before proceeding with step 2.
 5. Confirm with `ls` to make sure the downloaded file "NC_045512.2.fasta" is there.
 6. Now we will move this FASTA file into a new directory.
 7. In your personal directory, use `mkdir` to make a new directory called "sarscov2"
