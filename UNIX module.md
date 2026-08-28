@@ -12,7 +12,7 @@
 
 ### Creating new files and directories; basic navigation
 1. To create a personal directory in scratch space of the classroom project (PAS3124), use `mkdir yourname`
-2. The general structure of unix commands is: program options input output. In this case, program is "mkdir" and output is "unixmore", which is being run as follows (there are no options or input file being specified here):
+2. The general structure of unix commands is: program options input output. In this case, program is "mkdir" and output is "yourname", which is being run as follows (there are no options or input file being specified here):
 `mkdir yourname`
 3. To enter/change directory to "yourname", use `cd yourname`
 4. Now try, `pwd`
