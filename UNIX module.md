@@ -160,5 +160,6 @@ Let's first finish sizing up chr22 exercise from the last class.
 8. To count the number of sites, remove the -n option from the command in step 6. So, how many EcoRI sites are there in chr22?
 9. Is this the final answer? Why not? Hint: there are bases in lower case as well.
 10. `grep` with `-i` option ignores case while searching. Modify the command above in step 8 to find the remaining sites.
-11. How close is the number that we got to the one we hypothesized? Does this confirm or reject our hypothesis?
+11. Is this the final answer? Hint: What if "GAATTC" is split over two lines? The line breaks can be deleted by including this command `tr -d '\n'` . Do `man tr` to know more about what this would do.
+12. How close is the number that we got to the one we hypothesized? Does this confirm or reject our hypothesis?
 ### Exercise 2: Take a screenshot of your work in step 10 to submit.
