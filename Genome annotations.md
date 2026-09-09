@@ -1,9 +1,9 @@
 # Class 5
 ## Visualizing genome annotations in NCBI RefSeq, Ensembl and UCSC
-1. Check annotations for the gene TBX1 in the following databases:
-  NCBI RefSeq: `https://www.ncbi.nlm.nih.gov/gene/6899`
-  Ensembl: `https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000184058;r=22:19756703-19783593`
-  UCSC: `https://genome.ucsc.edu/` (search for TBX1, in Gene and Gene Predictions group, turn on Gencode V48, RefSeq and MANE tracks)
+1. Check annotations for the gene TBX1 in the following three databases:
+2. NCBI RefSeq: `https://www.ncbi.nlm.nih.gov/gene/6899`
+3. Ensembl: `https://www.ensembl.org/Homo_sapiens/Gene/Summary?db=core;g=ENSG00000184058;r=22:19756703-19783593`
+4. UCSC: `https://genome.ucsc.edu/` a. Search for TBX1; b. In search results click on one of the transcripts in MANE plus clinical to open chr22 sequence and tracks; c. In "Gene and Gene Predictions" group of tracks, turn Gencode V50, RefSeq and MANE tracks to FULL and hit REFRESH; d. Optional: in "Comparative Genomics" group, turn on "UCSC 100 Vertebrates".)
 
 ## Download GTF files from RefSeq and Ensembl
 1. In your personal directory, make a new directory called `hg38_gtfs`. Change directory into this new directory.
