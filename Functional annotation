@@ -1,0 +1,4 @@
+# Class 9
+## Creating list of shortest and longest human genes
+1. Starting with the Ensembl GTF, create a new GTF that has two additional columns with gene_biotype and gene_id using this code: `awk -F'\t' '$3=="gene" {match($9, /gene_biotype "([^"]+)"/, biotype); match ($9, /gene_id "([^"]+)"/, gene_id); p
+rint $0 "\t" biotype[1] "\t" gene_id[1];}' GRCh38.115.gtf > GRCh38.115.biotype.gene_id.gtf`
