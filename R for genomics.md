@@ -71,7 +71,7 @@ hist(log10(data1$V2),
 # Plot smooth density curve
 plot(density(data1$V2), 
      main = "hg38 Gene Lengths", 
-     xlab = "Gene Length (log10(bp))",
+     xlab = "Gene Length (bp)",
      col = "red", 
      lwd = 2)
 
