@@ -25,7 +25,7 @@ AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC
 
 ```
   trimmomatic PE \
-  SRR#_R1.fastq SRR#_R2.fastq \ 
+  SRR#_R1.fastq SRR#_R2.fastq \
   SRR#_paired_F.fastq SRR#_unpaired_F.fastq SRR#_paired_R.fastq SRR#_unpaired_R.fastq \
   ILLUMINACLIP:adapters.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:18 
 ```
