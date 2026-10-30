@@ -268,22 +268,27 @@ write.csv(condition_results_with_names, "siC_vs_siLARP4B_results.csv", row.names
 ```
 # Analysis of DESeq2 results
 
-setwd("~/materials")
+# Set working directory and load necessary packages
+# If running in the same session as above, these steps need not be repeated.
+
+setwd("~/materials") 
 
 library(ggplot2)
 library(dplyr)
 library(readr)
 library(tidyr)
 
+# Read the DESeq results csv file
 LARP4B_DEseq <- read_csv("siC_vs_siLARP4B_results.csv")
 
+# Learn more about the rows and columns of the results csv file
 glimpse(LARP4B_DEseq)
 
-# Select certain columns and get summary
+# Select certain columns -log2FoldChange column in this case- and get summary of that column
 log2fc <- select(LARP4B_DEseq, log2FoldChange) 
 summary(log2fc)
 
-# Create a new column for 2-fold significance
+# Create and add a new column called sig_2f to the object LARP4B_DEseq with 2-fold significance status of each row
 LARP4B_DEseq$sig_2f <- with(LARP4B_DEseq, ifelse(log2FoldChange > 1 & padj < 0.05, "Up",
                                                        ifelse(log2FoldChange < -1 & padj < 0.05, "Down", "Not significant")))
 
