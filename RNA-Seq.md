@@ -191,7 +191,6 @@ ggplot(count_table_filtered, aes(x = log10(pc3_si4B_1), y = log10(pc3_si4B_2))) 
 setwd("~/materials")
 
 library("DESeq2")
-library("biomaRt")
 
 #read in count table
 count_table = read.csv("pc3_siC_si4B_count_table.csv",
@@ -245,14 +244,12 @@ condition_results = results(DE_dataset,
                             contrast = c("condition","kd", "ctrl"),
                             independentFiltering = FALSE)
 
-#connect to ensembl specifying v114 (gencode v48) annotation
-ensembl_114 = useEnsembl(biomart = "genes", 
-                         dataset = "hsapiens_gene_ensembl",
-                         version = 114)
+library(annotables)
 
-#get a data frame mapping ensembl gene ids to HGNC symbols (gene names)
-gene_id_table = getBM(mart = ensembl_114,
-                      attributes = c("ensembl_gene_id", "hgnc_symbol"))
+# Use the local grch38 table from annotables to extract the ID mapping
+# We select the ensembl ID and HGNC symbol columns and rename them to match your original script
+gene_id_table = grch38[, c("ensgene", "symbol")]
+colnames(gene_id_table) = c("ensembl_gene_id", "hgnc_symbol")
 
 #remove duplicates for very rare cases an ensembl id maps to multiple symbols
 gene_id_table = gene_id_table[!duplicated(gene_id_table$ensembl_gene_id), ]
