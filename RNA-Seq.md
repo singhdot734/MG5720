@@ -300,10 +300,10 @@ ggplot(LARP4B_DEseq, aes(x = log2FoldChange, y = -log10(padj), color = sig_2f)) 
 LARP4B_DEseq <- subset(LARP4B_DEseq, !is.na(hgnc_symbol))
 
 # Subset for Up-regulated genes
-up_genes <- subset(LARP4B_DEseq, significance == "Up")
+up_genes <- subset(LARP4B_DEseq, sig_2f == "Up")
 
 # Subset for Down-regulated genes
-down_genes <- subset(LARP4B_DEseq, significance == "Down")
+down_genes <- subset(LARP4B_DEseq, sig_2f == "Down")
 
 # Write to CSV (only hgnc_symbol column)
 write.csv(up_genes$hgnc_symbol, "up_genes.csv", row.names = FALSE)
