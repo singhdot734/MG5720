@@ -5,14 +5,14 @@ sinteractive -A PAS3124 -c 48 -t 1:00:00
 
 ### Update your course folder
 ```bash
-cd ~/MG5645/name.#/MG5795-2025  
+cd ~/MG5720/name.#/MG5720  
 git pull  
 ```
 
 ### Install EDTA.
 Run them line by line
 ```bash
-cd 22.TE_annotation  
+cd 24.TE_annotation  
 git clone https://github.com/oushujun/EDTA.git  
 module load miniconda3/24.1.2-py310
 

@@ -17,9 +17,9 @@ sinteractive -A PAS3124 -n 48 -t 1:00:00
 
 #### 2. Update your course folder
 ```
-cd ~/MG5645/name.#/MG5795-2025  
+cd ~/MG5720/name.#/MG5720  
 git pull  
-cd 21.gene_annotation
+cd 20.gene_annotation
 ```
 
 #### 3. Install HelixerLite ###

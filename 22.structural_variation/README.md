@@ -18,7 +18,7 @@ For Structural Variation (SV) detection we will be using multiple methods (Assem
 All the instructions below requires you to think along. You are responsible for a clear data structure on your workspace and to find the individual files that you need. I am happy to assist but please take a moment to look around (`ll`) or think where a certain file could be.
 
 ### The main steps in this Module are:
-1. Short read based InDel detection (using minimap2 alignments from [23.variant_calling](https://github.com/singhdot734/MG5795-2025/tree/main/23.variant_calling))
+1. Short read based InDel detection (using minimap2 alignments from [21.variant_calling](https://github.com/singhdot734/MG5720/tree/main/21.variant_calling))
 2. Assembly based SV detection (using [Assemblytics](http://assemblytics.com/))
 3. Long read based mapping based SV detection (using [Sniffles](https://github.com/fritzsedlazeck/Sniffles))
 4. SV comparison (using [SURVIVOR](https://github.com/fritzsedlazeck/SURVIVOR))
@@ -32,7 +32,7 @@ sinteractive -A PAS3124 -c 48 -t 1:00:00
 
 ### Update your course folder
 ```
-cd ~/MG5645/name.#/MG5795-2025
+cd ~/MG5720/name.#/MG5720
 git pull
 ```
 

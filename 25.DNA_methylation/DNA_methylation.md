@@ -20,13 +20,13 @@ sinteractive -A PAS3124 -c 48 -t 1:00:00
 
 ### Update your course folder
 ```
-cd ~/MG5645/name.#/MG5795-2025
+cd ~/MG5720/name.#/MG5720
 git pull
 ```
 
 ### Activate the `mapping` environment and install tools
 ```
-cd 26.DNA_methylation
+cd 25.DNA_methylation
 module load miniconda3/24.1.2-py310
 conda activate mapping
 conda install pbmm2 pb-cpg-tools -c bioconda -y

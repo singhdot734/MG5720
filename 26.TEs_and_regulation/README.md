@@ -34,11 +34,11 @@ command line. Change directories to the subdirectory for this activity, the same
 
 Update your course folder
 ```bash
-cd ~/MG5645/name.#/MG5795-2025
+cd ~/MG5720/name.#/MG5720
 git pull
 ```
 
-Now, in **Files** located in the **Viewer Pane** (bottom right window), click the `27.TEs_and_regulation.Rproj` file. Select **General** 
+Now, in **Files** located in the **Viewer Pane** (bottom right window), click the `26.TEs_and_regulation.Rproj` file. Select **General** 
 if it pops up a "Project Options" window. This will initialize the enviornment and dependencies automatically. Now you can open the 
 `Regulation.Rmd` file by clicking on it in **Files** and it will pop up in the **Editor Pane** (upper left window). Execute everything there 
 before continuing below. 

@@ -19,7 +19,7 @@ sinteractive -A PAS3124 -c 48 -t 1:00:00
 
 ### Update your course folder
 ```
-cd ~/MG5645/name.#/MG5795-2025
+cd ~/MG5720/name.#/MG5720
 git pull
 ```
 
@@ -54,7 +54,7 @@ conda install -c bioconda -c conda-forge minimap2 samtools freebayes vcflib samb
 First, we'll want to allow tools (such as our variant caller) to quickly access certain regions in the reference. This is done using the samtools `.fai` FASTA index format, which records the lengths of the various sequences in the reference and their offsets from the beginning of the file.
 
 ```bash
-cd 23.variant_calling
+cd 21.variant_calling
 samtools faidx B73_chr2_5M.fa
 ```
 
@@ -164,7 +164,7 @@ bcftools view -m2 -M2 -i "INFO/AO>=2 && QUAL/INFO/AO>10 && COUNT(GT!='mis')==$NS
 # Create a genome folder in snpEff/data
 mkdir -p snpEff/data/MyGenome
 cp B73_chr2_5M.fa snpEff/data/MyGenome/sequences.fa
-cp ../21.gene_annotation/B73_chr2_5M.Zm00001eb.1.genes.gff3 snpEff/data/MyGenome/genes.gff
+cp ../20.gene_annotation/B73_chr2_5M.Zm00001eb.1.genes.gff3 snpEff/data/MyGenome/genes.gff
 
 # Create and add entry to snpEff.config
 echo "MyGenome.genome : MyGenome" > snpEff/snpEff.config

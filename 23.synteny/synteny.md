@@ -18,13 +18,13 @@ sinteractive -A PAS3124 -c 48 -t 1:00:00
 
 ### Update your course folder
 ```
-cd ~/MG5645/name.#/MG5795-2025
+cd ~/MG5720/name.#/MG5720
 git pull
 ```
 
 ### Create and activate the environment.
 ```
-cd 25.synteny
+cd 23.synteny
 module load miniconda3/24.1.2-py310
 conda env create -f synteny.yml 
 conda activate synteny
