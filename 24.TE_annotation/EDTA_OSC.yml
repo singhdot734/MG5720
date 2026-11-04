@@ -428,4 +428,3 @@ dependencies:
   - zlib-ng=2.2.5=hde8ca8f_0
   - zstandard=0.25.0=py312h5253ce2_1
   - zstd=1.5.7=hb8e6e7a_2
-prefix: /users/PAS2387/oushujun/.conda/envs/EDTA
