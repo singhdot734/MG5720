@@ -46,7 +46,8 @@ less B73_chr2_5M.fa
 module load miniconda3/24.1.2-py310
 
 # "mapping" environment: lectures 21 and 25 install their tools into it, so keep this name
-conda create -n mapping -y
+# (created only if it doesn't exist yet, so re-running this block never wipes those tools)
+conda env list | grep -q "^mapping " || conda create -n mapping -y
 
 # "helixer" environment for this lecture
 conda env create -f helixer.yml
@@ -55,15 +56,15 @@ conda activate helixer
 # install HelixerLite, use ONE of the two options
 # option 1 (recommended): pinned versions tested for this class
 pip install -r helixer_pip.yml
-# option 2: latest version
-python -m pip install helixerlite
+# option 2: latest version (keep gfftk at 25.6.10; newer gfftk writes wrong UTRs)
+python -m pip install helixerlite gfftk==25.6.10
 
 # test if you have helixerlite installed
 helixerlite -h
 ```
 
 ### Annotate Maize sequences with different models ###
-Run the four models in the background. Each uses 12 CPUs, so all four fit in the 48 CPUs requested above.
+Run the four models in the background. Together they take about 5 minutes and up to ~95 GB of memory, which the 48-CPU session above provides (OSC gives memory per CPU). HelixerLite accepts `-c 12` but ignores it; TensorFlow picks its own thread count.
 ```
 cd /fs/ess/PAS3124/name.#/MG5720/20.gene_annotation
 module load miniconda3/24.1.2-py310
@@ -74,7 +75,7 @@ nohup helixerlite --fasta B73_chr2_5M.fa --lineage vertebrate --out B73_chr2_5M.
 nohup helixerlite --fasta B73_chr2_5M.fa --lineage invertebrate --out B73_chr2_5M.invertebrate.output.gff3 -c 12 > invertebrate.log 2>&1 &
 ```
 
-Check progress. The runs are done when `jobs` shows nothing and all four gff3 files exist.
+Check progress. The runs are done when `jobs` shows nothing, all four gff3 files exist, and each log ends with `module finished`. TensorFlow messages about CUDA, cuDNN or TensorRT (such as `CUDA_ERROR_NO_DEVICE`) are normal on CPU nodes; ignore them.
 ```
 jobs
 tail -n 3 *.log
