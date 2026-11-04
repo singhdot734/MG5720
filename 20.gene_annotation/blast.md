@@ -1,5 +1,7 @@
 ## Set up your environment ##
-#### Create and actvate a conda environment called "mapping"
+First request compute resources and update your course folder (steps 1 and 2 in [Helixer.md](Helixer.md)). The BLAST practice uses the same `20.gene_annotation` folder.
+
+#### Create and activate a conda environment called "mapping"
 You can name it what ever you like, just something simple and easy to remember
 ```
 module load miniconda3/24.1.2-py310  
@@ -17,7 +19,7 @@ blastn -help
 #### Create a softlink of the genome
 Enter your course folder; name.# is your OSU ID
 ```
-cd ~/MG5720/name.#/MG5720/23.blast
+cd ~/MG5720/name.#/MG5720/20.gene_annotation
 ln -s ~/MG5720/class/data/Rice_AGIS1.fasta  
 less Rice_AGIS1.fasta  
 ```
