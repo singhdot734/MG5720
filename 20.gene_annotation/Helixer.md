@@ -1,39 +1,62 @@
-## Using Deep Learning for ab initio gene predictions
+## Using Deep Learning for ab initio gene predictions ##
 
-#### Helixer GitHub ###
+#### Helixer GitHub ####
 This is the original Helixer that includes model training and prediction  
 https://github.com/usadellab/Helixer  
 https://github.com/gglyptodon/helixer-docker  
 
-#### HelixerLite GitHub ###
+#### HelixerLite GitHub ####
 This is a lightweight and easy-to-install Helixer that only includes model prediction  
 https://github.com/nextgenusfs/helixerlite  
 
-### Set up the tool ###
+### Set up ###
 #### 1. Request compute resources ####
 ```
-sinteractive -A PAS3124 -n 48 -t 1:00:00
+sinteractive -A PAS3124 -c 48 -t 1:00:00
 ```
 
-#### 2. Update your course folder
+#### 2. Set up your course folder ####
+Do this once. Replace `name.#` with your OSU name.# in all commands below.
 ```
-cd ~/MG5720/name.#/MG5720  
-git fetch origin  
-git reset origin/main  # sync to the latest course files; your data and outputs are kept  
-cd 20.gene_annotation  
-ls -l B73_chr2_5M.fa  # the 5 Mb maize B73 sequence to annotate
+cd /fs/ess/PAS3124/
+mkdir name.#
+cd name.#
+git clone https://github.com/singhdot734/MG5720.git
 ```
 
-#### 3. Install HelixerLite ###
+If you already have the course folder, update it instead.
 ```
-# set up the base environment
+cd /fs/ess/PAS3124/name.#/MG5720
+# sync to the latest course files; your data and outputs are kept
+git fetch origin
+git reset origin/main
+git restore .
+```
+
+#### 3. Link the genome and its reference annotation ####
+```
+cd /fs/ess/PAS3124/name.#/MG5720/20.gene_annotation
+ln -s /fs/ess/PAS3124/class/data/B73_chr2_5M.fa
+ln -s /fs/ess/PAS3124/class/data/B73_chr2_5M.Zm00001eb.1.genes.gff3
+less B73_chr2_5M.fa
+```
+
+#### 4. Create conda environments ####
+```
 module load miniconda3/24.1.2-py310
+
+# "mapping" environment: lectures 21 and 25 install their tools into it, so keep this name
+conda create -n mapping -y
+
+# "helixer" environment for this lecture
 conda env create -f helixer.yml
 conda activate helixer
 
 # install HelixerLite, use ONE of the two options
-pip install -r helixer_pip.yml  # option 1: pinned versions tested for this class (recommended)
-python -m pip install helixerlite  # option 2: latest version
+# option 1 (recommended): pinned versions tested for this class
+pip install -r helixer_pip.yml
+# option 2: latest version
+python -m pip install helixerlite
 
 # test if you have helixerlite installed
 helixerlite -h
@@ -42,27 +65,28 @@ helixerlite -h
 ### Annotate Maize sequences with different models ###
 Run the four models in the background. Each uses 12 CPUs, so all four fit in the 48 CPUs requested above.
 ```
+cd /fs/ess/PAS3124/name.#/MG5720/20.gene_annotation
 module load miniconda3/24.1.2-py310
 conda activate helixer
-nohup helixerlite --fasta B73_chr2_5M.fa --lineage land_plant --out B73_chr2_5M.land_plant.output.gff3 -c 12 > land_plant.log 2>&1 &  
-nohup helixerlite --fasta B73_chr2_5M.fa --lineage fungi --out B73_chr2_5M.fungi.output.gff3 -c 12 > fungi.log 2>&1 &  
-nohup helixerlite --fasta B73_chr2_5M.fa --lineage vertebrate --out B73_chr2_5M.vertebrate.output.gff3 -c 12 > vertebrate.log 2>&1 &  
+nohup helixerlite --fasta B73_chr2_5M.fa --lineage land_plant --out B73_chr2_5M.land_plant.output.gff3 -c 12 > land_plant.log 2>&1 &
+nohup helixerlite --fasta B73_chr2_5M.fa --lineage fungi --out B73_chr2_5M.fungi.output.gff3 -c 12 > fungi.log 2>&1 &
+nohup helixerlite --fasta B73_chr2_5M.fa --lineage vertebrate --out B73_chr2_5M.vertebrate.output.gff3 -c 12 > vertebrate.log 2>&1 &
 nohup helixerlite --fasta B73_chr2_5M.fa --lineage invertebrate --out B73_chr2_5M.invertebrate.output.gff3 -c 12 > invertebrate.log 2>&1 &
 ```
 
 Check progress. The runs are done when `jobs` shows nothing and all four gff3 files exist.
 ```
-jobs  
-tail -n 3 *.log  
+jobs
+tail -n 3 *.log
 ls -lh B73_chr2_5M.*.output.gff3
 ```
 
 ### In-class exercise: count gene models and exons ###
 Column 3 of a GFF3 file is the feature type. Count the `gene` and `exon` lines of each output and fill in the table.
 ```
-printf "Model\tGene_models\tExons\tAvg_exons_per_gene\n"  
-for model in land_plant fungi vertebrate invertebrate; do  
-  awk -F'\t' -v model=$model '$3=="gene"{g++} $3=="exon"{e++} END{printf "%s\t%d\t%d\t%.2f\n", model, g, e, (g ? e/g : 0)}' B73_chr2_5M.$model.output.gff3  
+printf "Model\tGene_models\tExons\tAvg_exons_per_gene\n"
+for model in land_plant fungi vertebrate invertebrate; do
+  awk -F'\t' -v model=$model '$3=="gene"{g++} $3=="exon"{e++} END{printf "%s\t%d\t%d\t%.2f\n", model, g, e, (g ? e/g : 0)}' B73_chr2_5M.$model.output.gff3
 done
 ```
 
