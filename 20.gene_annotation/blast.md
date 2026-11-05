@@ -17,10 +17,10 @@ blastn -help
 ```
 
 #### Create a softlink of the genome
-Enter your course folder; name.# is your OSU ID
+Enter your course folder; replace name_data with your folder name
 ```
-cd ~/MG5720/name.#/MG5720/20.gene_annotation
-ln -s ~/MG5720/class/data/Rice_AGIS1.fasta  
+cd /fs/scratch/PAS3124/name_data/MG5720/20.gene_annotation
+ln -s /fs/ess/PAS3124/class/data/Rice_AGIS1.fasta  
 less Rice_AGIS1.fasta  
 ```
 

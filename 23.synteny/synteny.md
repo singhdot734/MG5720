@@ -18,7 +18,7 @@ sinteractive -A PAS3124 -c 48 -t 1:00:00
 
 ### Update your course folder
 ```
-cd ~/MG5720/name.#/MG5720
+cd /fs/scratch/PAS3124/name_data/MG5720
 git pull
 ```
 

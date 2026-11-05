@@ -11,22 +11,23 @@ https://github.com/nextgenusfs/helixerlite
 
 ### Set up ###
 #### 1. Request compute resources ####
+The `-c 48` requests a server with 48 CPU cores. `-t 1:00:00` requests 1 hour of time, modify it if you need longer time.
 ```
 sinteractive -A PAS3124 -c 48 -t 1:00:00
 ```
 
 #### 2. Set up your course folder ####
-Do this once. Replace `name.#` with your OSU name.# in all commands below.
+Do this once. Your folder in the class scratch space is `name_data` (for example, `shujun_data`). Replace `name_data` with your folder name in all commands below.
 ```
-cd /fs/ess/PAS3124/
-mkdir name.#
-cd name.#
+cd /fs/scratch/PAS3124/
+mkdir -p name_data
+cd name_data
 git clone https://github.com/singhdot734/MG5720.git
 ```
 
 If you already have the course folder, update it instead.
 ```
-cd /fs/ess/PAS3124/name.#/MG5720
+cd /fs/scratch/PAS3124/name_data/MG5720
 # sync to the latest course files; your data and outputs are kept
 git fetch origin
 git reset origin/main
@@ -35,7 +36,7 @@ git restore .
 
 #### 3. Link the genome and its reference annotation ####
 ```
-cd /fs/ess/PAS3124/name.#/MG5720/20.gene_annotation
+cd /fs/scratch/PAS3124/name_data/MG5720/20.gene_annotation
 ln -s /fs/ess/PAS3124/class/data/B73_chr2_5M.fa
 ln -s /fs/ess/PAS3124/class/data/B73_chr2_5M.Zm00001eb.1.genes.gff3
 less B73_chr2_5M.fa
@@ -45,11 +46,10 @@ less B73_chr2_5M.fa
 ```
 module load miniconda3/24.1.2-py310
 
-# "mapping" environment: lectures 21 and 25 install their tools into it, so keep this name
-# (created only if it doesn't exist yet, so re-running this block never wipes those tools)
+# create the "mapping" environment: lectures 21 and 25 install their tools into it, so keep this name
 conda env list | grep -q "^mapping " || conda create -n mapping -y
 
-# "helixer" environment for this lecture
+# create the "helixer" environment for this lecture
 conda env create -f helixer.yml
 conda activate helixer
 
@@ -63,10 +63,22 @@ python -m pip install helixerlite gfftk==25.6.10
 helixerlite -h
 ```
 
-### Annotate Maize sequences with different models ###
-Run the four models in the background. Together they take about 5 minutes and up to ~95 GB of memory, which the 48-CPU session above provides (OSC gives memory per CPU). HelixerLite accepts `-c 12` but ignores it; TensorFlow picks its own thread count.
+#### If the installation was interrupted ####
+If HelixerLite installation is interrupted, or a command in step 4 failed, you need to reinstall it from scratch. Request a new session (step 1), then run the block below (about 10 minutes). `-y` replaces the old `helixer` environment, and `&&` stops at the first failed step.
 ```
-cd /fs/ess/PAS3124/name.#/MG5720/20.gene_annotation
+cd /fs/scratch/PAS3124/name_data/MG5720/20.gene_annotation
+module load miniconda3/24.1.2-py310
+conda env create -f helixer.yml -y &&
+conda activate helixer &&
+pip install -r helixer_pip.yml &&
+helixerlite -h
+```
+When `helixerlite -h` prints its help, move onto the next step.
+
+### Annotate Maize sequences with different models ###
+Run the four models in the background. Together they take about 5 minutes and up to ~95 GB of memory, which is provided by the 48-CPU server session.
+```
+cd /fs/scratch/PAS3124/name_data/MG5720/20.gene_annotation
 module load miniconda3/24.1.2-py310
 conda activate helixer
 nohup helixerlite --fasta B73_chr2_5M.fa --lineage land_plant --out B73_chr2_5M.land_plant.output.gff3 -c 12 > land_plant.log 2>&1 &
@@ -75,7 +87,7 @@ nohup helixerlite --fasta B73_chr2_5M.fa --lineage vertebrate --out B73_chr2_5M.
 nohup helixerlite --fasta B73_chr2_5M.fa --lineage invertebrate --out B73_chr2_5M.invertebrate.output.gff3 -c 12 > invertebrate.log 2>&1 &
 ```
 
-Check progress. The runs are done when `jobs` shows nothing, all four gff3 files exist, and each log ends with `module finished`. TensorFlow messages about CUDA, cuDNN or TensorRT (such as `CUDA_ERROR_NO_DEVICE`) are normal on CPU nodes; ignore them.
+Check progress. The runs are done when `jobs` shows nothing, all four gff3 files exist, and each log ends with `module finished`.
 ```
 jobs
 tail -n 3 *.log

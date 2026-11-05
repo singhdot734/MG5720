@@ -23,10 +23,10 @@ Put "2" in the **Number of hours** to apply for an 2-hour session. After submitt
 After the request is approved, the status changes to **Running**. Click the **Connect to RStudio Server** button to open RStudio on OSC.   
 
 RStudio will automatically connect to your OSC account, so your directories will all be available. 
-To make sure you are at your root directory, at your R **Console** tab of the RStudio **Console Pane** (the bottom left window), run this 
-command to set your directory to your home directory at OSC. 
+At your R **Console** tab of the RStudio **Console Pane** (the bottom left window), run this command to set your working 
+directory to your course folder (replace `name_data` with your folder name). 
 ```R
-setwd("~")
+setwd("/fs/scratch/PAS3124/name_data/MG5720")
 ```
 
 Then, navigate to the clone of the class git repo using the **Terminal** of the RStudio **Console Pane**. This acts just like the 
@@ -34,11 +34,12 @@ command line. Change directories to the subdirectory for this activity, the same
 
 Update your course folder
 ```bash
-cd ~/MG5720/name.#/MG5720
+cd /fs/scratch/PAS3124/name_data/MG5720
 git pull
 ```
 
-Now, in **Files** located in the **Viewer Pane** (bottom right window), click the `26.TEs_and_regulation.Rproj` file. Select **General** 
+Now, in **Files** located in the **Viewer Pane** (bottom right window), click **More** > **Go To Working Directory**, open the 
+`26.TEs_and_regulation` folder, and click the `26.TEs_and_regulation.Rproj` file. Select **General** 
 if it pops up a "Project Options" window. This will initialize the enviornment and dependencies automatically. Now you can open the 
 `Regulation.Rmd` file by clicking on it in **Files** and it will pop up in the **Editor Pane** (upper left window). Execute everything there 
 before continuing below. 

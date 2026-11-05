@@ -1,18 +1,11 @@
 ## Set up the class folder ##
-#### Create a quick link to the folder
-```
-cd ~  
-ln -s /fs/ess/PAS3124/ MG5720  
-cd MG5720  
-ls -l  
-```
-
 #### Create your own folder and clone the course folder
+Your folder is in the class scratch space `/fs/scratch/PAS3124/` and is named `name_data` (for example, `shujun_data`). Replace `name_data` with your folder name in all commands.  
 The cloned folder will be the place you practice and run things
 ```
-cd ~/MG5720/
-mkdir name.# (your OSU ID)  
-cd name.# (your OSU ID)  
+cd /fs/scratch/PAS3124/
+mkdir -p name_data  # no error if the folder already exists
+cd name_data
 git clone https://github.com/singhdot734/MG5720.git  
 ```
 
