@@ -1,0 +1,17 @@
+name: sv
+channels:
+  - conda-forge
+  - bioconda
+  - nodefaults
+dependencies:
+  # assembly-based SVs (nucmer comes from mummer4)
+  - mummer4=4.0.1
+  - assemblytics=2.0.1
+  # long-read SVs
+  - minimap2=2.31
+  - samtools=1.25
+  - sniffles=2.8.1
+  # VCF handling and SV comparison
+  - bcftools=1.25
+  - bedtools=2.31.1
+  - survivor=1.0.7
