@@ -23,9 +23,9 @@ The main steps in this module are:
 
 ### Set up ###
 #### 1. Request compute resources ####
-The `-c 48` requests a server with 48 CPU cores. `-t 1:00:00` requests 1 hour of time, modify it if you need longer time.
+The `-c 48` requests a server with 48 CPU cores. `-t 2:00:00` requests 2 hours of time, modify it if you need longer time.
 ```
-sinteractive -A PAS3124 -c 48 -t 1:00:00
+sinteractive -A PAS3124 -c 48 -t 2:00:00
 ```
 
 #### 2. Update your course folder ####
@@ -42,13 +42,13 @@ git restore .
 ```
 cd /fs/scratch/PAS3124/name_data/MG5720/22.structural_variation
 # B73 and Mo17 assemblies of the same 5 Mb region
-ln -s /fs/ess/PAS3124/class/data/B73_chr2_5M.fa
-ln -s /fs/ess/PAS3124/class/data/Mo17_chr2_5M.fa
+ln -s ../data/B73_chr2_5M.fa
+ln -s ../data/Mo17_chr2_5M.fa
 # PacBio HiFi reads of B73 and Mo17 from this region
-ln -s /fs/ess/PAS3124/class/data/B73_chr2_5M.fastq.gz
-ln -s /fs/ess/PAS3124/class/data/Mo17_chr2_5M.fastq.gz
+ln -s ../data/B73_chr2_5M.fastq.gz
+ln -s ../data/Mo17_chr2_5M.fastq.gz
 # the annotated short-read variants from lecture 21
-ln -s /fs/ess/PAS3124/class/data/Zea.chr2_5M.filtered.annotated.vcf
+ln -s ../data/Zea.chr2_5M.filtered.annotated.vcf
 ls -l
 ```
 
