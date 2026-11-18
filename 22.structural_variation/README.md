@@ -61,9 +61,8 @@ module load miniconda3/24.1.2-py310
 # install the tools, use ONE of the two options
 # option 1 (recommended): create the "sv" environment from sv.yml (about 2 minutes)
 conda env create -f sv.yml -y
-# option 2: you already created "sv" with "conda create -n sv ...": add MUMmer to it (about 1 minute)
-conda activate sv
-conda install -c conda-forge -c bioconda mummer4 -y
+# option 2: created "sv" with "conda create -n sv ..."
+conda create -n sv -c bioconda -c conda-forge survivor "sniffles>2" assemblytics minimap2 bcftools samtools bedtools mummer4 -y
 
 conda activate sv
 
