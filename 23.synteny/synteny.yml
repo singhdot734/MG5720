@@ -4,6 +4,7 @@ dependencies:
   # Python runtime
   - python=3.10.18
   - pip
+  - setuptools<81   # jcvi needs pkg_resources (removed in setuptools 81)
 
   # Python packages
   - jcvi=1.5.6

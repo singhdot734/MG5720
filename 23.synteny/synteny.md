@@ -13,7 +13,7 @@ Tools used in this tutorial:
 
 ### Request compute resources.
 ```
-sinteractive -A PAS3124 -c 48 -t 2:00:00
+sinteractive -A PAS3124 -c 48 -t 1:00:00
 ```
 
 ### Update your course folder
@@ -22,7 +22,7 @@ cd /fs/scratch/PAS3124/name_data/MG5720
 git pull
 ```
 
-### Create and activate the environment.
+### Create and activate the environment (about 5 minutes).
 ```
 cd 23.synteny
 module load miniconda3/24.1.2-py310
@@ -49,13 +49,13 @@ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/964/271/285/GCA_964271285.1_dd
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/036/452/645/GCA_036452645.1_ASM3645264v1/GCA_036452645.1_ASM3645264v1_genomic.fna.gz && gunzip GCA_036452645.1_ASM3645264v1_genomic.fna.gz && mv GCA_036452645.1_ASM3645264v1_genomic.fna Cburs.fa
 ```
 
-### Get the refrence protein file. 
+### Get the reference protein file. 
 ```
 # Arabidopsis thaliana.
 wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/001/735/GCF_000001735.4_TAIR10.1/GCF_000001735.4_TAIR10.1_protein.faa.gz && gunzip GCF_000001735.4_TAIR10.1_protein.faa.gz && mv GCF_000001735.4_TAIR10.1_protein.faa Athal.pep
 ```
 
-### Run the syntenic analysis.
+### Run the syntenic analysis (about 7 minutes with 48 cores).
 ```
 # activate your conda env if you have not done so
 module load miniconda3/24.1.2-py310

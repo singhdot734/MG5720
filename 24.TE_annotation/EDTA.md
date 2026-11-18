@@ -1,6 +1,6 @@
 ### Request compute resources.
 ```bash
-sinteractive -A PAS3124 -c 48 -t 2:00:00
+sinteractive -A PAS3124 -c 48 -t 1:00:00
 ```
 
 ### Update your course folder

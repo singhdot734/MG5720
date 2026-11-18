@@ -11,9 +11,9 @@ https://github.com/nextgenusfs/helixerlite
 
 ### Set up ###
 #### 1. Request compute resources ####
-The `-c 48` requests a server with 48 CPU cores. `-t 2:00:00` requests 2 hours of time, modify it if you need longer time.
+The `-c 48` requests a server with 48 CPU cores. `-t 1:00:00` requests 1 hour of time, modify it if you need longer time.
 ```
-sinteractive -A PAS3124 -c 48 -t 2:00:00
+sinteractive -A PAS3124 -c 48 -t 1:00:00
 ```
 
 #### 2. Set up your course folder ####
