@@ -50,7 +50,7 @@ module load miniconda3/24.1.2-py310
 conda env list | grep -q "^mapping " || conda create -n mapping -y
 
 # create the "helixer" environment for this lecture
-conda env create -f helixer.yml
+conda env create -f helixer.yml -y
 conda activate helixer
 
 # install HelixerLite, use ONE of the two options

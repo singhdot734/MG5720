@@ -26,7 +26,7 @@ git pull
 ```
 cd 23.synteny
 module load miniconda3/24.1.2-py310
-conda env create -f synteny.yml 
+conda env create -f synteny.yml -y
 conda activate synteny
 ```
 
@@ -89,7 +89,7 @@ The idiogram and the dotplot are two ways to view synteny.
 ### Install BEDtools
 ```bash
 conda activate synteny
-conda install -c bioconda bedtools
+conda install -c bioconda bedtools -y
 ```
 
 ### Find overlaps between genes and SVs
