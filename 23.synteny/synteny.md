@@ -94,6 +94,13 @@ conda install -c bioconda bedtools -y
 
 ### Find overlaps between genes and SVs
 ```bash
+cd /fs/scratch/PAS3124/name_data/MG5720/23.synteny
+# B73 gene annotation
+ln -s /fs/ess/PAS3124/class/data/B73_chr2_5M.Zm00001eb.1.genes.gff3
+# filtered PacBio SVs you made in lecture 22
+ln -s ../22.structural_variation/B73_chr2_5M.PacBio.SV.vcf
+ls -lL B73_chr2_5M.Zm00001eb.1.genes.gff3 B73_chr2_5M.PacBio.SV.vcf
+
 bedtools intersect -a <(grep CDS B73_chr2_5M.Zm00001eb.1.genes.gff3) -b B73_chr2_5M.PacBio.SV.vcf -wo|less
 ```
 
