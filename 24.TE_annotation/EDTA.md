@@ -13,26 +13,26 @@ git pull
 Run them line by line
 ```bash
 cd 24.TE_annotation  
-# v2.2.2 matches the EDTA version in EDTA_OSC.yml and has the maize TE library used below
-git clone --branch v2.2.2 https://github.com/oushujun/EDTA.git
+# v2.3.0 matches the EDTA version in EDTA_OSC.yml and has the TE libraries used below
+git clone --branch v2.3.0 https://github.com/oushujun/EDTA.git
 module load miniconda3/24.1.2-py310
 
 # Install EDTA using either approach
 # Approach 1
-mamba env create -f EDTA_OSC.yml
+conda env create -f EDTA_OSC.yml -y
 
 # Approach 2
-mamba create -n EDTA -y
-mamba activate EDTA
-mamba install -c conda-forge -c bioconda edta -y
+conda create -n EDTA -y
+conda activate EDTA
+conda install -n EDTA -c conda-forge -c bioconda edta "tir-learner>4" -y
 ```
 
 ### Run EDTA on the test data
 ```bash
-mamba activate EDTA  
+conda activate EDTA  
 perl ./EDTA/EDTA.pl -h  
 cd ./EDTA/test  
-perl ../EDTA.pl --genome ./genome.fa --curatedlib ../database/rice7.0.1.liban --sensitive 1 --anno 1 --threads 48
+perl ../EDTA.pl --genome ./genome.fa --curatedlib ../database/rice7.0.0.liban --sensitive 1 --anno 1 --threads 48
 ```
 
 
@@ -73,5 +73,5 @@ cd /fs/scratch/PAS3124/name_data/MG5720/24.TE_annotation
 cp ../data/B73_chr2_5M.fa .
 module load miniconda3/24.1.2-py310
 conda activate EDTA  
-perl ./EDTA/EDTA.pl --genome ./B73_chr2_5M.fa --curatedlib ./EDTA/database/maizeTE11122019 --anno 1 --threads 48
+perl ./EDTA/EDTA.pl --genome ./B73_chr2_5M.fa --curatedlib ./EDTA/database/maizeTE02052020 --anno 1 --threads 48
 ```

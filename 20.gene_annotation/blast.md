@@ -11,7 +11,7 @@ conda activate mapping
 
 #### Install blast to the mapping environment
 ```
-conda install -c bioconda blast -y
+conda install -n mapping -c bioconda blast -y
 blastn -h
 blastn -help
 ```

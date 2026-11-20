@@ -29,7 +29,7 @@ git pull
 cd 25.DNA_methylation
 module load miniconda3/24.1.2-py310
 conda activate mapping
-conda install pbmm2 pb-cpg-tools -c bioconda -y
+conda install -n mapping pbmm2 pb-cpg-tools -c bioconda -y
 ```
 
 ## Part 1: Start our analysis 

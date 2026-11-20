@@ -89,7 +89,7 @@ The idiogram and the dotplot are two ways to view synteny.
 ### Install BEDtools
 ```bash
 conda activate synteny
-conda install -c bioconda bedtools -y
+conda install -n synteny -c bioconda bedtools -y
 ```
 
 ### Find overlaps between genes and SVs
