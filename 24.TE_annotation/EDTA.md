@@ -13,7 +13,8 @@ git pull
 Run them line by line
 ```bash
 cd 24.TE_annotation  
-git clone https://github.com/oushujun/EDTA.git  
+# v2.2.2 matches the EDTA version in EDTA_OSC.yml and has the maize TE library used below
+git clone --branch v2.2.2 https://github.com/oushujun/EDTA.git
 module load miniconda3/24.1.2-py310
 
 # Install EDTA using either approach
@@ -68,6 +69,9 @@ cat genome.fa.mod.EDTA.TEanno.gff3 | grep -v '##' | cut -f 3 | sort | uniq -c
 
 ### Run EDTA on the B73 sequence
 ```bash
+cd /fs/scratch/PAS3124/name_data/MG5720/24.TE_annotation
+# copy the B73 genome from the course data folder
+cp ../data/B73_chr2_5M.fa .
 module load miniconda3/24.1.2-py310
 conda activate EDTA  
 perl ./EDTA/EDTA.pl --genome ./B73_chr2_5M.fa --curatedlib ./EDTA/database/maizeTE11122019 --anno 1 --threads 48
